@@ -1,4 +1,5 @@
 import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
 import 'package:VoilaGiftApp/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -36,8 +37,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
           onPressed: () {},
         ),
         IconButton(
-          icon: Icon(Icons.more, color: Colors.black),
-          onPressed: () {},
+          icon: Icon(Icons.shopping_cart, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => OrderCart()));
+          },
         ),
         IconButton(
           icon: Icon(

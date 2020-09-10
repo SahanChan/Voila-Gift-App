@@ -4,6 +4,7 @@ import 'package:VoilaGiftApp/models/item.dart';
 import 'package:VoilaGiftApp/screens/Home/bottomNavBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeAppBar.dart';
 import 'package:VoilaGiftApp/screens/Home/itemList.dart';
+import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
 import 'package:VoilaGiftApp/services/database.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class Home extends StatelessWidget {
         appBar: HomeAppBar(title: "Voila Home"),
         drawer: Drawer(
           child: Container(
-            color: ShadowColor,
+            color: BackgroundColor,
             child: ListView(
               children: <Widget>[
                 DrawerHeader(
@@ -35,7 +36,10 @@ class Home extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.shopping_cart),
                   title: Text('Cart'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => OrderCart()));
+                  },
                 ),
                 ListTile(
                   leading: Icon(Icons.settings),
@@ -53,9 +57,9 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
         body: ItemList(),
         backgroundColor: BackgroundColor,
+        bottomNavigationBar: BottomNavBar(),
       ),
     );
   }

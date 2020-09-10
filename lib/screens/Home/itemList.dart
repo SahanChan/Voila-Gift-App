@@ -14,11 +14,18 @@ class _ItemListState extends State<ItemList> {
   Widget build(BuildContext context) {
     final items = Provider.of<List<Item>>(context);
     // print(items.documents);
-    items.forEach((item) {
-      print(item.title);
-      print(item.desc);
-      print(item.price);
-    });
-    return Container();
+    // items.forEach((item) {
+    //   print(item.title);
+    //   print(item.desc);
+    //   print(item.price);
+    // });
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        // return ItemTile(
+
+        // );
+      },
+    );
   }
 }
