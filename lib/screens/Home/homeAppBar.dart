@@ -16,6 +16,9 @@ class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
       title: Text(widget.title, style: TextStyle(color: Colors.black)),
       backgroundColor: PrimaryColor,
       automaticallyImplyLeading: true,
