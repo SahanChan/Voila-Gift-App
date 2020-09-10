@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "855098477737",
+    "firebase_url": "https://voila-cake-shop.firebaseio.com",
+    "project_id": "voila-cake-shop",
+    "storage_bucket": "voila-cake-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855098477737:android:3a201e3806a9547c96adb8",
+        "android_client_info": {
+          "package_name": "com.example.VoilaGiftApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855098477737-1v52k916pj6sgk2hfmnrvikqk0b3mhmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB69s_bOYH_bNuU1a4iLsha4XwHvwxQtcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855098477737-1v52k916pj6sgk2hfmnrvikqk0b3mhmk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

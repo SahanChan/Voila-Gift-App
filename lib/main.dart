@@ -1,0 +1,25 @@
+import 'package:VoilaGiftApp/services/auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'screens/wrapper.dart';
+
+void main() {
+  runApp(VoilaApp());
+}
+
+class VoilaApp extends StatefulWidget {
+  @override
+  _VoilaAppState createState() => _VoilaAppState();
+}
+
+class _VoilaAppState extends State<VoilaApp> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamProvider.value(
+        value: AuthService().user,
+        child: MaterialApp(
+          home: Wrapper(),
+        ));
+  }
+}
