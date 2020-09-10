@@ -1,30 +1,29 @@
 import 'package:VoilaGiftApp/appBars/signInAppBar.dart';
 import 'package:VoilaGiftApp/colors.dart';
-
+// import 'package:VoilaGiftApp/screens/Register/registerBody.dart';
+// import 'package:VoilaGiftApp/screens/Signin/signInBody.dart';
 import 'package:VoilaGiftApp/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
 
-  SignIn({this.toggleView});
+  Register({this.toggleView});
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
-
-  //text field state
-
   String email = '';
   String password = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: BackgroundColor,
-      appBar: SignInAppBar(title: "Sign in"),
+      appBar: SignInAppBar(
+        title: "Register",
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
         child: Form(
@@ -37,7 +36,7 @@ class _SignInState extends State<SignIn> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Welcome",
+                        "Register",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -73,7 +72,7 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 20.0),
               RaisedButton(
                 color: PrimaryColor,
-                child: Text("Sign In"),
+                child: Text("Register"),
                 onPressed: () async {
                   print(email);
                   print(password);
@@ -84,7 +83,7 @@ class _SignInState extends State<SignIn> {
                 onPressed: () {
                   widget.toggleView();
                 },
-                child: Text("Register"),
+                child: Text("Sign In"),
                 color: PrimaryColor,
               ),
               SizedBox(height: 20.0),

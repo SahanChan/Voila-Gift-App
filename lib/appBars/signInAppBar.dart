@@ -3,10 +3,10 @@ import 'package:VoilaGiftApp/colors.dart';
 // import '../colors.dart';
 
 class SignInAppBar extends StatefulWidget implements PreferredSizeWidget {
-  SignInAppBar({Key key, this.title}) : super(key: key);
+  SignInAppBar({Key key, this.title, this.leadingIcon}) : super(key: key);
 
   final String title;
-
+  final Widget leadingIcon;
   Size get preferredSize => const Size.fromHeight(65);
 
   @override
@@ -17,6 +17,7 @@ class _SignInAppBarState extends State<SignInAppBar> {
   @override
   Widget build(BuildContext context) {
     return new AppBar(
+      leading: widget.leadingIcon,
       title: Text(widget.title, style: TextStyle(color: Colors.black)),
       backgroundColor: PrimaryColor,
       automaticallyImplyLeading: true,
