@@ -1,4 +1,4 @@
-import 'package:VoilaGiftApp/colors.dart';
+import 'package:VoilaGiftApp/constants.dart';
 import 'package:VoilaGiftApp/services/auth.dart';
 import 'package:flutter/material.dart';
 

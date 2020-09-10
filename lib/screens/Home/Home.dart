@@ -1,4 +1,4 @@
-import 'package:VoilaGiftApp/colors.dart';
+import 'package:VoilaGiftApp/constants.dart';
 import 'package:VoilaGiftApp/screens/Home/body.dart';
 import 'package:VoilaGiftApp/screens/Home/bottomNavBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeAppBar.dart';
