@@ -1,4 +1,5 @@
-import 'package:VoilaGiftApp/models/item.dart';
+import 'package:VoilaGiftApp/models/dealsOfTheDay.dart';
+// import 'package:VoilaGiftApp/models/item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
@@ -6,31 +7,27 @@ class DatabaseService {
   DatabaseService({this.uid});
 
   //collection reference
-  final CollectionReference itemCollection =
-      Firestore.instance.collection('Items');
+  final CollectionReference dealsOfTheDayCollection =
+      Firestore.instance.collection('DealsOfTheDay');
 
-  Future updateUserData(String title, String desc, int price) async {
-    return await itemCollection.document(uid).setData({
-      'title': title,
-      'desc': desc,
-      'price': price,
-    });
-  }
+  // Future updateUserData(String title, String desc, int price) async {
+  //   return await itemCollection.document(uid).setData({
+  //     'title': title,
+  //     'desc': desc,
+  //     'price': price,
+  //   });
+  // }
 
   //item list from snapshot
 
-  List<Item> _itemListFromSnapshots(QuerySnapshot snapshot) {
+  List<DealsOfTheDay> _itemListFromSnapshots(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-      return Item(
-        title: doc.data['title'] ?? '',
-        desc: doc.data['desc'] ?? '',
-        price: doc.data['price'] ?? 0,
-      );
+      return DealsOfTheDay(title: doc.data['title'] ?? '');
     }).toList();
   }
 
   //get items stream
-  Stream<List<Item>> get items {
-    return itemCollection.snapshots().map(_itemListFromSnapshots);
+  Stream<List<DealsOfTheDay>> get items {
+    return dealsOfTheDayCollection.snapshots().map(_itemListFromSnapshots);
   }
 }

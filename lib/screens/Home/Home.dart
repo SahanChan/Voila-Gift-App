@@ -1,9 +1,11 @@
 import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/models/dealsOfTheDay.dart';
 import 'package:VoilaGiftApp/models/item.dart';
 // import 'package:VoilaGiftApp/screens/Home/body.dart';
 import 'package:VoilaGiftApp/screens/Home/bottomNavBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeAppBar.dart';
-import 'package:VoilaGiftApp/screens/Home/itemList.dart';
+import 'package:VoilaGiftApp/screens/Home/homeBody.dart';
+// import 'package:VoilaGiftApp/screens/Home/itemList.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
 import 'package:VoilaGiftApp/services/database.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,7 +15,7 @@ import 'package:provider/provider.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Item>>.value(
+    return StreamProvider<List<DealsOfTheDay>>.value(
       value: DatabaseService().items,
       child: Scaffold(
         appBar: HomeAppBar(title: "Voila Home"),
@@ -57,7 +59,7 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-        body: ItemList(),
+        body: HomeBody(),
         backgroundColor: BackgroundColor,
         bottomNavigationBar: BottomNavBar(),
       ),
