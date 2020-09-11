@@ -126,6 +126,8 @@ class _PaymentState extends State<Payment> {
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter Card Number";
+                        } else if (value.length < 3 || value.length > 3) {
+                          return "enter a 3 number cvc";
                         } else {
                           return null;
                         }
@@ -137,6 +139,8 @@ class _PaymentState extends State<Payment> {
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Enter CVC";
+                        } else if (value.length < 16) {
+                          return "Enter 16 numbers";
                         } else {
                           return null;
                         }
@@ -171,6 +175,8 @@ class _PaymentState extends State<Payment> {
             FlatButton(
               onPressed: () {
                 if (cardNumber.text.isNotEmpty &&
+                    cardNumber.text.length == 16 &&
+                    cvc.text.length == 3 &&
                     cvc.text.isNotEmpty &&
                     expiryDate.text.isNotEmpty) {
                   Firestore.instance.collection('Payment').add({
