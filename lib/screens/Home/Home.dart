@@ -1,15 +1,10 @@
 import 'package:VoilaGiftApp/constants.dart';
 import 'package:VoilaGiftApp/models/dealsOfTheDay.dart';
-// import 'package:VoilaGiftApp/models/item.dart';
-// import 'package:VoilaGiftApp/screens/Home/body.dart';
 import 'package:VoilaGiftApp/screens/Home/bottomNavBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeAppBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeBody.dart';
-// import 'package:VoilaGiftApp/screens/Home/homeBody.dart';
-// import 'package:VoilaGiftApp/screens/Home/itemList.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
 import 'package:VoilaGiftApp/services/database.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

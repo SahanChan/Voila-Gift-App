@@ -133,9 +133,8 @@ class _OrderCartState extends State<OrderCart> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: SizedBox(
-                                          child: Container(
-                                            color: PrimaryColor,
-                                          ),
+                                          child: Image.network(
+                                              list[index]['imageUrl']),
                                           width: 100,
                                           height: 100,
                                         ),

@@ -1,7 +1,18 @@
+import 'package:flutter/material.dart';
+
 class Item {
   final String title;
-  final String desc;
+  final String image;
+  final String description;
   final int price;
+  final int id;
+  final Color color;
 
-  Item({this.title, this.desc, this.price});
+  Item(
+      {this.title,
+      this.image,
+      this.description,
+      this.price,
+      this.id,
+      this.color});
 }
