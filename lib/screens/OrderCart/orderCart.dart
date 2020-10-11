@@ -11,32 +11,9 @@ class OrderCart extends StatefulWidget {
 }
 
 class _OrderCartState extends State<OrderCart> {
-  double totalPrice = 0;
-
-  // String myText = null;
-
-  // final DocumentReference documentReference =
-  //     Firestore.instance.document("Item/dummy");
-
-  @override
-  // void initState() {
-  //   super.initState();
-  //   setState(() {
-  //     _addAllPrice();
-  //   });
-  // }
-
-  // Future _addAllPrice() async {
-  //   final List<DocumentSnapshot> list = await Firestore.instance
-  //       .collection('Item')
-  //       .getDocuments()
-  //       .then((QuerySnapshot snapshot) => snapshot.documents);
-
-  //   for (var i = 0; i < list.length; i++) {
-  //     totalPrice += list[i]['price'];
-  //   }
-  // }
-
+  double x;
+  String id;
+  List<int> _counter = List();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,9 +44,11 @@ class _OrderCartState extends State<OrderCart> {
                               return Container(child: Text("loading price"));
                             else {
                               final priceList = snapshot.data.documents;
+                              double totalPrice = 0;
                               for (var i = 0; i < priceList.length; i++) {
                                 totalPrice += priceList[i]['price'];
                               }
+                              x = totalPrice;
                               return Container(
                                 child: Text(
                                   "$totalPrice LKR",
@@ -116,7 +95,7 @@ class _OrderCartState extends State<OrderCart> {
                               setState(() async {
                                 await Firestore.instance
                                     .collection('Item')
-                                    .document(list[index])
+                                    .document()
                                     .delete();
                               });
                             },
@@ -189,9 +168,7 @@ class _OrderCartState extends State<OrderCart> {
                                                 color: Colors.black,
                                                 icon: Icon(Icons.add),
                                                 iconSize: 15,
-                                                onPressed: () {
-                                                  print(list[index]['price']);
-                                                },
+                                                onPressed: () {},
                                               ),
                                             ),
                                             Padding(
@@ -234,14 +211,40 @@ class _OrderCartState extends State<OrderCart> {
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
                                               0, 0, 10, 0),
-                                          child: Container(
-                                            child: Text(
-                                              list[index]['price'].toString() +
-                                                  " LKR",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                child: Text(
+                                                  list[index]['price']
+                                                          .toString() +
+                                                      " LKR",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
+                                              IconButton(
+                                                icon: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.red,
+                                                ),
+                                                onPressed: () async {
+                                                  DocumentSnapshot ref =
+                                                      list[index];
+
+                                                  await Firestore.instance
+                                                      .collection("OrderItems")
+                                                      .document(ref.documentID)
+                                                      .delete();
+                                                  setState(() {
+                                                    id = null;
+                                                  });
+                                                },
+                                              )
+                                            ],
                                           ),
                                         ),
                                       ],
@@ -266,7 +269,7 @@ class _OrderCartState extends State<OrderCart> {
               context,
               MaterialPageRoute(
                 builder: (context) => Payment(
-                  totPrice: totalPrice,
+                  totPrice: x,
                 ),
               ));
         },

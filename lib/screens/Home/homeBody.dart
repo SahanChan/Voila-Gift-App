@@ -11,6 +11,9 @@ class ViolaHome extends StatefulWidget {
 }
 
 class _ViolaHomeState extends State<ViolaHome> {
+  String id;
+  final db = Firestore.instance;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -71,7 +74,20 @@ class _ViolaHomeState extends State<ViolaHome> {
                               Icons.shopping_cart,
                               color: PrimaryColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              print("added");
+                              DocumentReference ref =
+                                  await db.collection("OrderItems").add({
+                                'title': items[index]['title'],
+                                'desc': items[index]['desc'],
+                                'imageUrl': items[index]['imageUrl'],
+                                'price': items[index]['price']
+                              });
+                              setState(() {
+                                id = ref.documentID;
+                              });
+                              print(ref.documentID);
+                            },
                           )
                         ],
                       ),
