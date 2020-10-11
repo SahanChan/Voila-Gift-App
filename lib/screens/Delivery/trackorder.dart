@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'Orderconfirm.dart';
 
 class TrackOrderPage extends StatelessWidget {
   @override
@@ -10,6 +9,7 @@ class TrackOrderPage extends StatelessWidget {
     );
   }
 }
+
 class trackOrderPage extends StatefulWidget {
   @override
   _trackOrderPageState createState() => _trackOrderPageState();
@@ -25,9 +25,10 @@ class _trackOrderPageState extends State<trackOrderPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
         ),
-        title: Text("Track Order", style: TextStyle(
-            color: Colors.black
-        ),),
+        title: Text(
+          "Track Order",
+          style: TextStyle(color: Colors.black),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -39,9 +40,19 @@ class _trackOrderPageState extends State<trackOrderPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Order Number 1001", style:  TextStyle(fontSize: 15, ),),
-            Text("Order confirmed. Ready to pick", style:  TextStyle(fontSize: 16,  color: Colors.grey ,),),
-
+            Text(
+              "Order Number 1001",
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            Text(
+              "Order confirmed. Ready to pick",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+            ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 15),
               height: 1,
@@ -71,7 +82,6 @@ class _trackOrderPageState extends State<trackOrderPage> {
               height: 1,
               color: Colors.grey,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -81,34 +91,38 @@ class _trackOrderPageState extends State<trackOrderPage> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       border: Border.all(
                         color: Colors.orange,
-                      )
+                      )),
+                  child: Text(
+                    "Cancel Order",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
                   ),
-                  child: Text("Cancel Order", style: TextStyle(fontSize: 16,  color: Colors.grey ,),),
                 ),
-
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-
                     color: Colors.orange,
-
                   ),
-                  child: Text("My Orders", style: TextStyle(fontSize: 16,  color: Colors.grey ,),),
+                  child: Text(
+                    "My Orders",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ],
             ),
-
           ],
         ),
       ),
-
-
-
     );
   }
-  Container statusWidget(String img, String status, bool isActive)
-  {
+
+  Container statusWidget(String img, String status, bool isActive) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -116,17 +130,16 @@ class _trackOrderPageState extends State<trackOrderPage> {
           Container(
             height: 30,
             width: 30,
-
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (isActive) ? Colors.orange : Colors.white,
                 border: Border.all(
                     color: (isActive) ? Colors.transparent : Colors.orange,
-                    width: 3
-                )
-            ),
+                    width: 3)),
           ),
-          SizedBox(width: 50,),
+          SizedBox(
+            width: 50,
+          ),
           Column(
             children: [
               Container(
@@ -134,14 +147,15 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 width: 40,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("asset/images/img.png"),
-                        fit: BoxFit.contain
-                    )
-                ),
+                        image: AssetImage("asset/images/visa.png"),
+                        fit: BoxFit.contain)),
               ),
-              Text(status, style: TextStyle(fontSize: 16,
-                  color: (isActive) ? Colors.orange : Colors.black
-              ),)
+              Text(
+                status,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: (isActive) ? Colors.orange : Colors.black),
+              )
             ],
           )
         ],

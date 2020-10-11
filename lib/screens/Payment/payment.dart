@@ -1,5 +1,6 @@
 // import 'dart:html';
 import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/screens/Delivery/deliverydetails.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -186,24 +187,19 @@ class _PaymentState extends State<Payment> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        color: Colors.white,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Total Price: ",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              "${yprice.price}",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Total Price: ",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Text(
+                            "${yprice.price}",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold),
+                          )
+                        ],
                       ),
                     ),
                     Padding(
@@ -219,8 +215,15 @@ class _PaymentState extends State<Payment> {
                                     'cvc': cvc.text,
                                     'expiryDate': expiryDate.text,
                                     'totalPrice': yprice.price,
-                                    'cardType': group
+                                    'cardType': group,
+                                    'cashOnDelivery': false
                                   });
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => signUpPage(
+                                                xprice: yprice,
+                                              )));
                                 } else {
                                   Scaffold.of(context).showSnackBar(SnackBar(
                                     content: Text("This is Not Valid"),
@@ -231,12 +234,27 @@ class _PaymentState extends State<Payment> {
                               color: PrimaryColor,
                             ),
                             FlatButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Firestore.instance.collection("Payment").add({
+                                  'cardNumber': null,
+                                  'cvc': null,
+                                  'expiryDate': null,
+                                  'totalPrice': yprice.price,
+                                  'cardType': null,
+                                  'cashOnDelivery': true
+                                });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => signUpPage(
+                                              xprice: yprice,
+                                            )));
+                              },
                               child: Text(
                                 "Cash on Delivery",
-                                style: TextStyle(color: PrimaryColor),
+                                style: TextStyle(color: Colors.white),
                               ),
-                              color: Colors.black,
+                              color: ButtonColor,
                             )
                           ]),
                     ),
