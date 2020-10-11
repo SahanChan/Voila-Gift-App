@@ -102,157 +102,164 @@ class _OrderCartState extends State<OrderCart> {
                               });
                             },
                             key: ValueKey("abc"),
-                            child: Card(
-                              color: CardColor,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: SizedBox(
-                                          child: Image.network(
-                                              list[index]['imageUrl']),
-                                          width: 100,
-                                          height: 100,
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      8, 8, 8, 2),
-                                              child: Text(
-                                                list[index]['title'],
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                list[index]['desc'],
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => ItemManagement()
+                                ));
+                              },
+                              child: Card(
+                                color: CardColor,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Row(
-                                          children: <Widget>[
-                                            Ink(
-                                              height: 30.0,
-                                              width: 30.0,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(7)),
-                                                color: LightPrimaryColor,
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: SizedBox(
+                                            child: Image.network(
+                                                list[index]['imageUrl']),
+                                            width: 100,
+                                            height: 100,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: <Widget>[
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        8, 8, 8, 2),
+                                                child: Text(
+                                                  list[index]['title'],
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
                                               ),
-                                              child: IconButton(
-                                                color: Colors.black,
-                                                icon: Icon(Icons.add),
-                                                iconSize: 15,
-                                                onPressed: () {},
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  list[index]['desc'],
+                                                  style: TextStyle(fontSize: 12),
+                                                ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      4, 0, 4, 0),
-                                              child: Ink(
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Row(
+                                            children: <Widget>[
+                                              Ink(
                                                 height: 30.0,
                                                 width: 30.0,
                                                 decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.grey[400],
-                                                      width: 1.0,
-                                                      style: BorderStyle.solid),
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(7)),
-                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(7)),
+                                                  color: LightPrimaryColor,
                                                 ),
-                                                child: Center(child: Text("1")),
-                                              ),
-                                            ),
-                                            Ink(
-                                              height: 30.0,
-                                              width: 30.0,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(7)),
-                                                color: LightPrimaryColor,
-                                              ),
-                                              child: IconButton(
-                                                color: Colors.black,
-                                                icon: Icon(Icons.remove),
-                                                iconSize: 15,
-                                                onPressed: () {},
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0, 0, 10, 0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                child: Text(
-                                                  list[index]['price']
-                                                          .toString() +
-                                                      " LKR",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
+                                                child: IconButton(
+                                                  color: Colors.black,
+                                                  icon: Icon(Icons.add),
+                                                  iconSize: 15,
+                                                  onPressed: () {},
                                                 ),
                                               ),
-                                              IconButton(
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Colors.red,
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        4, 0, 4, 0),
+                                                child: Ink(
+                                                  height: 30.0,
+                                                  width: 30.0,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.grey[400],
+                                                        width: 1.0,
+                                                        style: BorderStyle.solid),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(7)),
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Center(child: Text("1")),
                                                 ),
-                                                onPressed: () async {
-                                                  DocumentSnapshot ref =
-                                                      list[index];
-
-                                                  await Firestore.instance
-                                                      .collection("OrderItems")
-                                                      .document(ref.documentID)
-                                                      .delete();
-                                                  setState(() {
-                                                    id = null;
-                                                  });
-                                                },
-                                              )
+                                              ),
+                                              Ink(
+                                                height: 30.0,
+                                                width: 30.0,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(7)),
+                                                  color: LightPrimaryColor,
+                                                ),
+                                                child: IconButton(
+                                                  color: Colors.black,
+                                                  icon: Icon(Icons.remove),
+                                                  iconSize: 15,
+                                                  onPressed: () {},
+                                                ),
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                      ],
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 0, 10, 0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    list[index]['price']
+                                                            .toString() +
+                                                        " LKR",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18),
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  icon: Icon(
+                                                    Icons.delete,
+                                                    color: Colors.red,
+                                                  ),
+                                                  onPressed: () async {
+                                                    DocumentSnapshot ref =
+                                                        list[index];
+
+                                                    await Firestore.instance
+                                                        .collection("OrderItems")
+                                                        .document(ref.documentID)
+                                                        .delete();
+                                                    setState(() {
+                                                      id = null;
+                                                    });
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -296,6 +303,38 @@ class _OrderCartState extends State<OrderCart> {
         backgroundColor: LightPrimaryColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+}
+
+
+class ItemManagement extends StatefulWidget {
+  @override
+  _ItemManagementState createState() => _ItemManagementState();
+}
+
+class _ItemManagementState extends State<ItemManagement> {
+
+  final GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Item management"),
+      ),
+
+      body: Form(
+        key: _formkey,
+        autovalidate: true,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          children: <Widget>[
+
+          ],
+        ),
+
+      ),
+
     );
   }
 }
