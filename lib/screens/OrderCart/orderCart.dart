@@ -5,6 +5,8 @@ import 'package:VoilaGiftApp/screens/Payment/payment.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'package:VoilaGiftApp/models/price.dart';
+
 class OrderCart extends StatefulWidget {
   @override
   _OrderCartState createState() => _OrderCartState();
@@ -264,12 +266,13 @@ class _OrderCartState extends State<OrderCart> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final total_price = Price(price: x);
+          await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => Payment(
-                  totPrice: x,
+                  xprice: total_price,
                 ),
               ));
         },
