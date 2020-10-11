@@ -1,4 +1,5 @@
 import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/models/item.dart';
 import 'package:VoilaGiftApp/screens/Home/homeAppBar.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:VoilaGiftApp/screens/Payment/payment.dart';
@@ -6,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:VoilaGiftApp/models/price.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OrderCart extends StatefulWidget {
   @override
@@ -314,6 +316,9 @@ class ItemManagement extends StatefulWidget {
 }
 
 class _ItemManagementState extends State<ItemManagement> {
+  var item;
+  var selectedItem;
+
 
   final GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
   @override
@@ -329,7 +334,137 @@ class _ItemManagementState extends State<ItemManagement> {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           children: <Widget>[
+            Row(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: 40,),
+                    Text("Select a Size"),
+                    StreamBuilder<QuerySnapshot>(
+                      stream: Firestore.instance.collection("Dropdown").snapshots(),
 
+                        // ignore: missing_return
+                        builder: (context,snapshot) {
+                          if (!snapshot.hasData) {
+                            Text("Loading");
+                          } else {
+                            List<DropdownMenuItem> item = [];
+                            for (int i = 0; i <
+                                snapshot.data.documents.length; i++) {
+                              DocumentSnapshot snap = snapshot.data.documents[i];
+                              item.add(
+                                DropdownMenuItem(
+                                  child: Text(
+                                    snap.documentID,
+                                    style: TextStyle(color: Color(0xff11b719)),
+                                  ),
+
+                                  value: "${snap.documentID}",
+                                ),
+                              );
+                            }
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon((FontAwesomeIcons.pen),
+                                ),
+                                SizedBox(width: 50,),
+                                DropdownButton(
+                                  items: item,
+                                  onChanged: (item) {
+                                    final snackBar = SnackBar(
+                                        content: Text('Selected Item is $item',
+                                          style: TextStyle(
+                                              color: Color(0xff11b719)
+                                          ),
+                                        )
+                                    );
+                                    Scaffold.of(context).showSnackBar(snackBar);
+                                    setState(() {
+                                      selectedItem = item;
+                                    });
+                                  },
+                                  value: selectedItem,
+                                  isExpanded: false,
+                                  hint: new Text("choose item"),
+                                  style: TextStyle(color: Color(0xff11b719)),
+                                ),
+                              ],
+                            );
+                          }
+                        },
+                    ),
+                    SizedBox(height: 40,),
+                    Text("Select a Color"),
+                    StreamBuilder<QuerySnapshot>(
+                      stream: Firestore.instance.collection("Dropdown").snapshots(),
+
+                      // ignore: missing_return
+                      builder: (context,snapshot) {
+                        if (!snapshot.hasData) {
+                          Text("Loading");
+                        } else {
+                          List<DropdownMenuItem> item = [];
+                          for (int i = 0; i <
+                              snapshot.data.documents.length; i++) {
+                            DocumentSnapshot snap = snapshot.data.documents[i];
+                            item.add(
+                              DropdownMenuItem(
+                                child: Text(
+                                  snap.documentID,
+                                  style: TextStyle(color: Color(0xff11b719)),
+                                ),
+
+                                value: "${snap.documentID}",
+                              ),
+                            );
+                          }
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon((FontAwesomeIcons.pen),
+                              ),
+                              SizedBox(width: 50,),
+                              DropdownButton(
+                                items: item,
+                                onChanged: (item) {
+                                  final snackBar = SnackBar(
+                                      content: Text('Selected Item is $item',
+                                        style: TextStyle(
+                                            color: Color(0xff11b719)
+                                        ),
+                                      )
+                                  );
+                                  Scaffold.of(context).showSnackBar(snackBar);
+                                  setState(() {
+                                    selectedItem = item;
+                                  });
+                                },
+                                value: selectedItem,
+                                isExpanded: false,
+                                hint: new Text("choose item"),
+                                style: TextStyle(color: Color(0xff11b719)),
+                              ),
+                            ],
+                          );
+                        }
+                      },
+                    )
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20,),
+            TextFormField(
+              decoration: InputDecoration(
+                icon: Icon(
+                  FontAwesomeIcons.pen
+                ),
+                 hintText: 'Enter additional changes',
+                labelText: 'Description'
+              ),
+            )
           ],
         ),
 
