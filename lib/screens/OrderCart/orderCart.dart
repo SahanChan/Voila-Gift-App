@@ -342,7 +342,7 @@ class _ItemManagementState extends State<ItemManagement> {
                     SizedBox(height: 40,),
                     Text("Select a Size"),
                     StreamBuilder<QuerySnapshot>(
-                      stream: Firestore.instance.collection("Dropdown").snapshots(),
+                      stream: Firestore.instance.collection("Dropdown-Size").snapshots(),
 
                         // ignore: missing_return
                         builder: (context,snapshot) {
@@ -398,7 +398,7 @@ class _ItemManagementState extends State<ItemManagement> {
                     SizedBox(height: 40,),
                     Text("Select a Color"),
                     StreamBuilder<QuerySnapshot>(
-                      stream: Firestore.instance.collection("Dropdown").snapshots(),
+                      stream: Firestore.instance.collection("Dropdown-color").snapshots(),
 
                       // ignore: missing_return
                       builder: (context,snapshot) {
