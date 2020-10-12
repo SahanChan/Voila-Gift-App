@@ -1,4 +1,5 @@
 import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/models/delivery.dart';
 import 'package:VoilaGiftApp/screens/Delivery/trackorder.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,11 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:VoilaGiftApp/screens/Home/Home.dart';
 
 class OrderConfirm extends StatefulWidget {
+  final DeliveryDetails xdetails;
+  OrderConfirm({this.xdetails});
   @override
-  _OrderConfirmState createState() => _OrderConfirmState();
+  _OrderConfirmState createState() => _OrderConfirmState(ydetails: xdetails);
 }
 
 class _OrderConfirmState extends State<OrderConfirm> {
+  final DeliveryDetails ydetails;
+  _OrderConfirmState({this.ydetails});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +40,46 @@ class _OrderConfirmState extends State<OrderConfirm> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "You'r order has been placed and the item will be delivered soon",
+                    "You'r order has been placed and the item will be delivered soon ",
                     style: TextStyle(
                       fontSize: 15,
                     ),
                   ),
                   SizedBox(
                     height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Name: ${ydetails.name}",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        Text("Phone Number: ${ydetails.phoneNum}",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                        Text("Address: ${ydetails.address}",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  trackOrderPage(xdetails: ydetails)));
+                    },
+                    child: Text(
+                      "Track your Order",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: ButtonColor,
                   ),
                   FlatButton(
                     onPressed: () {
@@ -53,7 +91,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     color: ButtonColor,
-                  )
+                  ),
                 ],
               ),
             ],

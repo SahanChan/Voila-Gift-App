@@ -1,122 +1,123 @@
+import 'package:VoilaGiftApp/models/delivery.dart';
+import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-class TrackOrderPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: trackOrderPage(),
-    );
-  }
-}
+import 'package:VoilaGiftApp/screens/Home/Home.dart';
+import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
 
 class trackOrderPage extends StatefulWidget {
+  final DeliveryDetails xdetails;
+  trackOrderPage({this.xdetails});
   @override
-  _trackOrderPageState createState() => _trackOrderPageState();
+  _trackOrderPageState createState() =>
+      _trackOrderPageState(ydetails: xdetails);
 }
 
 class _trackOrderPageState extends State<trackOrderPage> {
+  final DeliveryDetails ydetails;
+  _trackOrderPageState({this.ydetails});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-        ),
-        title: Text(
-          "Track Order",
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-          )
-        ],
-      ),
+      appBar: VoilaAppBar(title: "Track Order"),
       body: Container(
         padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Order Number 1001",
-              style: TextStyle(
-                fontSize: 15,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Order Person name: ${ydetails.name} ",
+                style: TextStyle(
+                  fontSize: 15,
+                ),
               ),
-            ),
-            Text(
-              "Order confirmed. Ready to pick",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              height: 1,
-              color: Colors.grey,
-            ),
-            Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 13, top: 50),
-                  width: 4,
-                  height: 400,
+              Text(
+                "Order confirmed. Ready to pick",
+                style: TextStyle(
+                  fontSize: 16,
                   color: Colors.grey,
                 ),
-                Column(
-                  children: [
-                    statusWidget('confirmed', "Confirmed", true),
-                    statusWidget('onBoard2', "Picked Up", false),
-                    statusWidget('servicesImg', "In Process", false),
-                    statusWidget('shipped', "Shipped", false),
-                    statusWidget('Delivery', "Delivered", false),
-                  ],
-                )
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              height: 1,
-              color: Colors.grey,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 15),
+                height: 1,
+                color: Colors.grey,
+              ),
+              Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 13, top: 50),
+                    width: 4,
+                    height: 400,
+                    color: Colors.grey,
+                  ),
+                  Column(
+                    children: [
+                      statusWidget('confirmed', "Confirmed", true),
+                      statusWidget('onBoard2', "Picked Up", false),
+                      statusWidget('servicesImg', "In Process", false),
+                      statusWidget('shipped', "Shipped", false),
+                      statusWidget('Delivery', "Delivered", false),
+                    ],
+                  )
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 15),
+                height: 1,
+                color: Colors.grey,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          border: Border.all(
+                            color: Colors.orange,
+                          )),
+                      child: Text(
+                        "Cancel Order",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => OrderCart()));
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Colors.orange,
-                      )),
-                  child: Text(
-                    "Cancel Order",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
+                      ),
+                      child: Text(
+                        "My Orders",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.orange,
-                  ),
-                  child: Text(
-                    "My Orders",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

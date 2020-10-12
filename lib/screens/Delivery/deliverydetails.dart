@@ -19,11 +19,11 @@ class signUpPage extends StatefulWidget {
 }
 
 class _signUpPageState extends State<signUpPage> {
-  final _formKey = GlobalKey<FormState>();
-  final DeliveryDetails ydetails;
+  final _myformKey = GlobalKey<FormState>();
+  DeliveryDetails ydetails = DeliveryDetails();
   final Price yprice;
   _signUpPageState({this.yprice, this.ydetails});
-  final name = TextEditingController();
+  final personname = TextEditingController();
   final number = TextEditingController();
   final address = TextEditingController();
   final notes = TextEditingController();
@@ -32,137 +32,134 @@ class _signUpPageState extends State<signUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: VoilaAppBar(title: "Delivery"),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Dear Customer,",
-                      style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'sfpro'),
-                    ),
-                    Text(
-                      "Add you'r delivery details ",
-                      style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'sfpro'),
-                    ),
-                    TextFormField(
-                      controller: name,
-                      decoration: InputDecoration(
-                        labelText: "Name",
-                        hintText: "John Cena",
-                      ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Please enter your name";
-                        }
-                      },
-                    ),
-                    TextFormField(
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(10)
-                      ],
-                      autovalidate: true,
-                      decoration: InputDecoration(
-                          labelText: 'Phone Number', hintText: "94012345678"),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Cant have empty phone number";
-                        } else if (value.length != 10) {
-                          return "This has to be 10 numbers long";
-                        }
-                      },
-                    ),
-                    TextFormField(
-                      controller: address,
-                      decoration: InputDecoration(
-                        labelText: "Address",
-                      ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Please enter your name";
-                        }
-                      },
-                    ),
-                    TextFormField(
-                      controller: notes,
-                      decoration: InputDecoration(
-                        labelText: "Any Notes",
-                      ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Please enter your name";
-                        }
-                      },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40),
-                      child: Center(
-                        child: FlatButton(
-                          padding: EdgeInsets.fromLTRB(25, 20, 25, 20),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              Firestore.instance
-                                  .collection('DeliveryDetails')
-                                  .add({
-                                'name': name.text,
-                                'number': number.text,
-                                'address': address.text,
-                                'notes': notes.text,
-                              });
-                              ydetails.name = name.text;
-                              ydetails.address = address.text;
-                              ydetails.anyNotes = notes.text;
-                              ydetails.phoneNum = number.text;
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DateAndTime(
-                                            xprice: yprice,
-                                            xdetails: ydetails,
-                                          )));
-                            } else {
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                content: Text("This is Not Valid"),
-                              ));
-                            }
-                          },
-                          child: Text(
-                            "Add My Details",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                            ),
-                          ),
-                          color: PrimaryColor,
-                        ),
-                      ),
-                    ),
-                  ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Dear Customer,",
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ],
+              Text(
+                "Add you'r delivery details ",
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Form(
+                key: _myformKey,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(35.0, 5, 35, 0),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        controller: personname,
+                        autovalidate: true,
+                        decoration: InputDecoration(
+                            labelText: 'Name', hintText: "Your name"),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "You must have a name";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      TextFormField(
+                        controller: number,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(10)
+                        ],
+                        autovalidate: true,
+                        decoration: InputDecoration(
+                          labelText: "Phone Number",
+                          hintText: '94XXXXXXXX',
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Cant have empty phone number";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      TextFormField(
+                        controller: address,
+                        decoration: InputDecoration(
+                          labelText: "Delivery Adress",
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Please enter Address";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      TextFormField(
+                        controller: notes,
+                        decoration: InputDecoration(
+                          labelText: "Any Notes",
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FlatButton(
+                                onPressed: () {
+                                  final DeliveryDetails details =
+                                      DeliveryDetails(
+                                          name: personname.text,
+                                          phoneNum: number.text,
+                                          address: address.text,
+                                          anyNotes: notes.text);
+                                  if (_myformKey.currentState.validate()) {
+                                    Firestore.instance
+                                        .collection("DeliveryDetails")
+                                        .add({
+                                      'name': personname.text,
+                                      'number': number.text,
+                                      'address': address.text,
+                                      'notes': notes.text,
+                                    });
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => DateAndTime(
+                                                xprice: yprice,
+                                                xdetails: details)));
+                                  } else {
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text("This is Not Valid"),
+                                    ));
+                                  }
+                                },
+                                child: Text("Add My details"),
+                                color: PrimaryColor,
+                              ),
+                            ]),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

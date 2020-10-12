@@ -72,7 +72,7 @@ class _DateAndTimeState extends State<DateAndTime> {
               height: 15,
             ),
             Text(
-              "Pick Up Time ${ydetails.name}",
+              "Pick Up Time",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -165,8 +165,12 @@ class _DateAndTimeState extends State<DateAndTime> {
             ),
             InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => OrderConfirm()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OrderConfirm(
+                                xdetails: ydetails,
+                              )));
                 },
                 child: Container(
                   padding: EdgeInsets.all(20),

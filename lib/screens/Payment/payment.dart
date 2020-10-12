@@ -221,9 +221,8 @@ class _PaymentState extends State<Payment> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => signUpPage(
-                                                xprice: yprice,
-                                              )));
+                                          builder: (context) =>
+                                              signUpPage(xprice: yprice)));
                                 } else {
                                   Scaffold.of(context).showSnackBar(SnackBar(
                                     content: Text("This is Not Valid"),
