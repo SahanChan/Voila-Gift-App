@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'categories.dart';
 import 'package:VoilaGiftApp/screens/Item/details.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ViolaHome extends StatefulWidget {
   @override
@@ -75,6 +76,15 @@ class _ViolaHomeState extends State<ViolaHome> {
                               color: PrimaryColor,
                             ),
                             onPressed: () async {
+                              Fluttertoast.showToast(
+                                  msg: "Item added to cart",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.yellowAccent,
+                                  textColor: Colors.black,
+                                  fontSize: 16.0
+                              );
                               print("added");
                               DocumentReference ref =
                                   await db.collection("OrderItems").add({

@@ -6,7 +6,7 @@ import 'package:VoilaGiftApp/screens/Payment/payment.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:VoilaGiftApp/screens/Item/ItemView.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:VoilaGiftApp/models/price.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -251,6 +251,17 @@ class _OrderCartState extends State<OrderCart> {
                                                     color: Colors.red,
                                                   ),
                                                   onPressed: () async {
+
+
+                                                    Fluttertoast.showToast(
+                                                        msg: "Item removed",
+                                                        toastLength: Toast.LENGTH_SHORT,
+                                                        gravity: ToastGravity.BOTTOM,
+                                                        timeInSecForIosWeb: 1,
+                                                        backgroundColor: Colors.yellowAccent,
+                                                        textColor: Colors.black,
+                                                        fontSize: 16.0
+                                                    );
                                                     DocumentSnapshot ref =
                                                         list[index];
 
