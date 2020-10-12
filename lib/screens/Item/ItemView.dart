@@ -1,4 +1,5 @@
 import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -254,6 +255,9 @@ class _ItemManagementState extends State<ItemManagement> {
                 color: ButtonColor,
                 onPressed: () {
                   save();
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => OrderCart()
+                  ));
                 })
           ],
         ),
@@ -270,6 +274,7 @@ class _ItemManagementState extends State<ItemManagement> {
       'Amount': selectedItem2,
       'Description': txt
     });
+
 
     print("saved");
   }
