@@ -253,14 +253,14 @@ class _DateAndTimeState extends State<DateAndTime> {
   void adddatee() {
     Map<String, dynamic> demodate = {"DATE": "Monday 20 Oct"};
     CollectionReference collectionReference =
-        Firestore.instance.collection('Delivery Date');
+        Firestore.instance.collection('DeliveryDetails');
     collectionReference.add(demodate);
   }
 
   void addtime() {
     Map<String, dynamic> demotime = {"TIME": "10AM to 11AM"};
     CollectionReference collectionReference =
-        Firestore.instance.collection('Delivery Time');
+        Firestore.instance.collection('DeliveryDetails');
     collectionReference.add(demotime);
   }
 }

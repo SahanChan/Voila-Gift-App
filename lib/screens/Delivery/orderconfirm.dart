@@ -53,17 +53,32 @@ class _OrderConfirmState extends State<OrderConfirm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+
                         Text(
-                          "Name: ${ydetails.name}",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                          "      Name:   ${ydetails.name}",
+                          style: TextStyle(color: Colors.orange,
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        Text("Phone Number: ${ydetails.phoneNum}",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                        Text("Address: ${ydetails.address}",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
+                        const Divider(
+                          color: Colors.black,
+                          height: 20,
+                          thickness: 5,
+                          indent: 20,
+                          endIndent: 0,
+                        ),
+                        Text("Phone Number:   ${ydetails.phoneNum}",
+                            style: TextStyle(color: Colors.orange,
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        const Divider(
+                          color: Colors.black,
+                          height: 20,
+                          thickness: 5,
+                          indent: 20,
+                          endIndent: 0,
+                        ),
+                        Text("    Address:   ${ydetails.address}",
+                            style: TextStyle(color: Colors.orange,
+                                fontSize: 20, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -75,22 +90,50 @@ class _OrderConfirmState extends State<OrderConfirm> {
                               builder: (context) =>
                                   trackOrderPage(xdetails: ydetails)));
                     },
-                    child: Text(
-                      "Track your Order",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: ButtonColor,
+                    child: Container(
+                        padding: EdgeInsets.all(5),
+                        height: 40,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            gradient:
+                            LinearGradient(colors: [Colors.orange, Colors.red])),
+                        child: Center(
+                            child: Text(
+                              "Track Order",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            )
+                        )
+                    )
+
                   ),
                   FlatButton(
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home()));
                     },
-                    child: Text(
-                      "Return To Home page",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: ButtonColor,
+                    child: Container(
+                        padding: EdgeInsets.all(10),
+                        height: 50,
+                        width: 250,
+                        decoration: BoxDecoration(
+                            gradient:
+                            LinearGradient(colors: [Colors.red, Colors.orange])),
+                        child: Center(
+                            child: Text(
+                              "Return To Homepage",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            )
+                        )
+                    )
+
                   ),
                 ],
               ),

@@ -134,7 +134,7 @@ class _PaymentState extends State<Payment> {
                       controller: cardNumber,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
+                        //FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(16)
                       ],
                       autovalidate: true,
@@ -155,7 +155,7 @@ class _PaymentState extends State<Payment> {
                       controller: cvc,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
+                        //FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(4)
                       ],
                       autovalidate: true,

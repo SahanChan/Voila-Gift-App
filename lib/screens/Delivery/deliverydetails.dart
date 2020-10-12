@@ -34,10 +34,14 @@ class _signUpPageState extends State<signUpPage> {
       appBar: VoilaAppBar(title: "Delivery"),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                height: 100,
+                child: Image.asset("assets/images/details.png"),
+              ),
               SizedBox(
                 height: 10,
               ),
@@ -67,7 +71,8 @@ class _signUpPageState extends State<signUpPage> {
                         controller: personname,
                         autovalidate: true,
                         decoration: InputDecoration(
-                            labelText: 'Name', hintText: "Your name"),
+
+                            labelText:'Name', hintText: "Your name"),
                         validator: (value) {
                           if (value.isEmpty) {
                             return "You must have a name";
@@ -80,7 +85,7 @@ class _signUpPageState extends State<signUpPage> {
                         controller: number,
                         keyboardType: TextInputType.number,
                         inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
+                          //FilteringTextInputFormatter.digitsOnly,
                           LengthLimitingTextInputFormatter(10)
                         ],
                         autovalidate: true,
@@ -120,8 +125,11 @@ class _signUpPageState extends State<signUpPage> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+
                               FlatButton(
+
                                 onPressed: () {
+
                                   final DeliveryDetails details =
                                       DeliveryDetails(
                                           name: personname.text,
@@ -147,12 +155,32 @@ class _signUpPageState extends State<signUpPage> {
                                     Scaffold.of(context).showSnackBar(SnackBar(
                                       content: Text("This is Not Valid"),
                                     ));
+
                                   }
+
                                 },
-                                child: Text("Add My details"),
-                                color: PrimaryColor,
+                                child: Container(
+                                  padding: EdgeInsets.all(20),
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      gradient:
+                                      LinearGradient(colors: [Colors.orange, Colors.red])),
+                                  child: Center(
+                                      child: Text(
+                                        "Place Order",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 20,
                               ),
-                            ]),
+                              )
+                                  )
+                                )
+                              )
+                            ]
+
+
+                      ),
                       ),
                     ],
                   ),

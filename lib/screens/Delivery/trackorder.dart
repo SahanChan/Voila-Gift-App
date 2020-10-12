@@ -14,6 +14,9 @@ class trackOrderPage extends StatefulWidget {
 }
 
 class _trackOrderPageState extends State<trackOrderPage> {
+  String name;
+  List<int> _counter = List();
+
   final DeliveryDetails ydetails;
   _trackOrderPageState({this.ydetails});
   @override
@@ -29,16 +32,54 @@ class _trackOrderPageState extends State<trackOrderPage> {
               Text(
                 "Order Person name: ${ydetails.name} ",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 20,
+
                 ),
+
               ),
+              SizedBox(height: 10),
+
               Text(
-                "Order confirmed. Ready to pick",
+                "Order confirmed. Ready to pick  ",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: Colors.grey,
+
+                ),
+
+              ),
+              SizedBox(height: 10),
+              GestureDetector(
+
+
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Home()));
+                },
+
+                child: Container(
+
+                  padding:
+                  EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(
+                        color: Colors.orange,
+
+                      )),
+                  child: Text(
+
+                    "Edit Details",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
                 ),
               ),
+
+
               Container(
                 margin: EdgeInsets.symmetric(vertical: 15),
                 height: 1,
@@ -88,13 +129,18 @@ class _trackOrderPageState extends State<trackOrderPage> {
                         "Cancel Order",
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.grey,
+
+                          color: Colors.black,
                         ),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: ()  async{
+                      CollectionReference collectionref = Firestore.instance.collection('deliverydetails');
+                      QuerySnapshot querysnapshot = await collectionref.getDocuments();
+                      querysnapshot.documents[0].reference.delete();
+
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => OrderCart()));
                     },
@@ -109,7 +155,8 @@ class _trackOrderPageState extends State<trackOrderPage> {
                         "My Orders",
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.grey,
+
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -148,7 +195,7 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 width: 40,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("asset/images/visa.png"),
+                        image: AssetImage("asset/images/amExp.png"),
                         fit: BoxFit.contain)),
               ),
               Text(
