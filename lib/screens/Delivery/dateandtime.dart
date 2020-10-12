@@ -177,7 +177,7 @@ class _DateAndTimeState extends State<DateAndTime> {
                   height: 70,
                   decoration: BoxDecoration(
                       gradient:
-                          LinearGradient(color:[Colors.orange, Colors.red])),
+                          LinearGradient(colors:[Colors.orange, Colors.red])),
                   child: Center(
                     child: Text(
                       "Place Order",
