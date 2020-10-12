@@ -1,3 +1,4 @@
+import 'package:VoilaGiftApp/models/delivery.dart';
 import 'package:VoilaGiftApp/models/price.dart';
 import 'package:VoilaGiftApp/screens/Delivery/orderconfirm.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
@@ -9,15 +10,18 @@ import 'package:VoilaGiftApp/screens/Delivery/deliverydetails.dart';
 //import 'package:flutter_app2/custform.dart';
 
 class DateAndTime extends StatefulWidget {
+  final DeliveryDetails xdetails;
   final Price xprice;
-  DateAndTime({this.xprice});
+  DateAndTime({this.xprice, this.xdetails});
   @override
-  _DateAndTimeState createState() => _DateAndTimeState(yprice: xprice);
+  _DateAndTimeState createState() =>
+      _DateAndTimeState(yprice: xprice, ydetails: xdetails);
 }
 
 class _DateAndTimeState extends State<DateAndTime> {
+  final DeliveryDetails ydetails;
   final Price yprice;
-  _DateAndTimeState({this.yprice});
+  _DateAndTimeState({this.yprice, this.ydetails});
   Map Date;
 
   final deldate = TextEditingController();
@@ -68,7 +72,7 @@ class _DateAndTimeState extends State<DateAndTime> {
               height: 15,
             ),
             Text(
-              "Pick Up Time",
+              "Pick Up Time ${ydetails.name}",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(

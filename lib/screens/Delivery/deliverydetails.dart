@@ -1,3 +1,5 @@
+import 'package:VoilaGiftApp/constants.dart';
+import 'package:VoilaGiftApp/models/delivery.dart';
 import 'package:VoilaGiftApp/models/price.dart';
 import 'package:VoilaGiftApp/screens/Delivery/dateandtime.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
@@ -8,17 +10,19 @@ import 'package:VoilaGiftApp/screens/Delivery/deliverydetails.dart';
 import 'package:flutter/services.dart';
 
 class signUpPage extends StatefulWidget {
+  final DeliveryDetails xdetails;
   final Price xprice;
-  signUpPage({this.xprice});
+  signUpPage({this.xprice, this.xdetails});
   @override
-  _signUpPageState createState() => _signUpPageState(yprice: xprice);
+  _signUpPageState createState() =>
+      _signUpPageState(yprice: xprice, ydetails: xdetails);
 }
 
 class _signUpPageState extends State<signUpPage> {
   final _formKey = GlobalKey<FormState>();
-
+  final DeliveryDetails ydetails;
   final Price yprice;
-  _signUpPageState({this.yprice});
+  _signUpPageState({this.yprice, this.ydetails});
   final name = TextEditingController();
   final number = TextEditingController();
   final address = TextEditingController();
@@ -59,9 +63,6 @@ class _signUpPageState extends State<signUpPage> {
                           fontWeight: FontWeight.w700,
                           fontFamily: 'sfpro'),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
                     TextFormField(
                       controller: name,
                       decoration: InputDecoration(
@@ -71,8 +72,6 @@ class _signUpPageState extends State<signUpPage> {
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Please enter your name";
-                        } else {
-                          return null;
                         }
                       },
                     ),
@@ -90,8 +89,6 @@ class _signUpPageState extends State<signUpPage> {
                           return "Cant have empty phone number";
                         } else if (value.length != 10) {
                           return "This has to be 10 numbers long";
-                        } else {
-                          return null;
                         }
                       },
                     ),
@@ -103,13 +100,8 @@ class _signUpPageState extends State<signUpPage> {
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Please enter your name";
-                        } else {
-                          return null;
                         }
                       },
-                    ),
-                    SizedBox(
-                      height: 40,
                     ),
                     TextFormField(
                       controller: notes,
@@ -119,67 +111,57 @@ class _signUpPageState extends State<signUpPage> {
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Please enter your name";
-                        } else {
-                          return null;
                         }
                       },
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
-                            gradient: LinearGradient(
-                                colors: [Color(0xfff3953b), Color(0xffe57509)],
-                                stops: [0, 1],
-                                begin: Alignment.topCenter)),
-                        child: Center(
-                          child: InkWell(
-                            onTap: () {
-                              if (_formKey.currentState.validate()) {
-                                Firestore.instance
-                                    .collection('DeliveryDetails')
-                                    .add({
-                                  'name': name.text,
-                                  'number': number.text,
-                                  'address': address.text,
-                                  'notes': notes.text,
-                                });
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Center(
+                        child: FlatButton(
+                          padding: EdgeInsets.fromLTRB(25, 20, 25, 20),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              Firestore.instance
+                                  .collection('DeliveryDetails')
+                                  .add({
+                                'name': name.text,
+                                'number': number.text,
+                                'address': address.text,
+                                'notes': notes.text,
+                              });
+                              ydetails.name = name.text;
+                              ydetails.address = address.text;
+                              ydetails.anyNotes = notes.text;
+                              ydetails.phoneNum = number.text;
 
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DateAndTime(xprice: yprice)));
-                              } else {
-                                Scaffold.of(context).showSnackBar(SnackBar(
-                                  content: Text("This is Not Valid"),
-                                ));
-                              }
-                            },
-                            child: Text(
-                              "Add My Details",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: 'sfpro'),
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DateAndTime(
+                                            xprice: yprice,
+                                            xdetails: ydetails,
+                                          )));
+                            } else {
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text("This is Not Valid"),
+                              ));
+                            }
+                          },
+                          child: Text(
+                            "Add My Details",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
                             ),
                           ),
-                        )),
-                    SizedBox(
-                      height: 10,
+                          color: PrimaryColor,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
-            )
           ],
         ),
       ),
