@@ -4,6 +4,7 @@ import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ItemManagement extends StatefulWidget {
   @override
@@ -258,6 +259,16 @@ class _ItemManagementState extends State<ItemManagement> {
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context) => OrderCart()
                   ));
+
+                  Fluttertoast.showToast(
+                      msg: "Preferences saved",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.yellowAccent,
+                      textColor: Colors.black,
+                      fontSize: 16.0
+                  );
                 })
           ],
         ),
