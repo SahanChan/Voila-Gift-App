@@ -2,6 +2,7 @@ import 'package:VoilaGiftApp/constants.dart';
 import 'package:VoilaGiftApp/models/delivery.dart';
 import 'package:VoilaGiftApp/models/price.dart';
 import 'package:VoilaGiftApp/screens/Delivery/dateandtime.dart';
+import 'package:VoilaGiftApp/screens/Delivery/deletenotifier.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _signUpPageState extends State<signUpPage> {
 
   @override
   Widget build(BuildContext context) {
+   // DeleteNotifier deletenotifier = Provider.of.<DeleteNotifier>(context,listen:false);
     return Scaffold(
       appBar: VoilaAppBar(title: "Delivery"),
       body: SingleChildScrollView(
@@ -158,6 +160,13 @@ class _signUpPageState extends State<signUpPage> {
 
                                   }
 
+                                  /*_ondetailsadded(DeliveryDetails details){
+                                             DeleteNotifier deletenotifier = Provider.
+                                             of.<DeleteNotifier>(context,listen:false);
+
+                                              deletenotifier.adddetail(details);
+                                              Navigator.pop(context);
+                                  }*/
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(20),

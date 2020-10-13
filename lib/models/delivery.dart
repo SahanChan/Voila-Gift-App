@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class DeliveryDetails {
   String name;
   String phoneNum;
@@ -5,4 +7,7 @@ class DeliveryDetails {
   String anyNotes;
 
   DeliveryDetails({this.name, this.phoneNum, this.address, this.anyNotes});
-}
+
+
+
+  }

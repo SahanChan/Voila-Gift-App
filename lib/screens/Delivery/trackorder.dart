@@ -1,9 +1,14 @@
+import 'dart:collection';
 import 'package:VoilaGiftApp/models/delivery.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/voilaAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:VoilaGiftApp/screens/Home/Home.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
+import 'package:VoilaGiftApp/screens/Delivery/deletenotifier.dart';
+import 'package:provider/provider.dart';
+
+
 
 class trackOrderPage extends StatefulWidget {
   final DeliveryDetails xdetails;
@@ -15,12 +20,22 @@ class trackOrderPage extends StatefulWidget {
 
 class _trackOrderPageState extends State<trackOrderPage> {
   String name;
-  List<int> _counter = List();
 
+  final db = Firestore.instance;
   final DeliveryDetails ydetails;
+
   _trackOrderPageState({this.ydetails});
+
   @override
   Widget build(BuildContext context) {
+      /*DeleteNotifier deletenotifier = Provider.of<DeleteNotifier>(context);
+
+      _ondetail(DeliveryDetails details){
+        Navigator.pop(context);
+        deletenotifier.deletedetails(details,details);
+      }*/
+
+
     return Scaffold(
       appBar: VoilaAppBar(title: "Track Order"),
       body: Container(
@@ -96,8 +111,8 @@ class _trackOrderPageState extends State<trackOrderPage> {
                   Column(
                     children: [
                       statusWidget('confirmed', "Confirmed", true),
-                      statusWidget('onBoard2', "Picked Up", false),
-                      statusWidget('servicesImg', "In Process", false),
+                      statusWidget('onBoard1', "Picked Up", false),
+                      statusWidget('onBoard', "In Process", false),
                       statusWidget('shipped', "Shipped", false),
                       statusWidget('Delivery', "Delivered", false),
                     ],
@@ -113,13 +128,12 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    },
+                   /* onTap: () => deletedetails(deletenotifier.currentdetail,
+                                      _ondetail),*/
                     child: Container(
+
                       padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           border: Border.all(
@@ -135,18 +149,16 @@ class _trackOrderPageState extends State<trackOrderPage> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: ()  async{
-                      CollectionReference collectionref = Firestore.instance.collection('deliverydetails');
-                      QuerySnapshot querysnapshot = await collectionref.getDocuments();
-                      querysnapshot.documents[0].reference.delete();
 
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => OrderCart()));
+
+                  GestureDetector(
+
+                    onTap: () async {
+
                     },
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Colors.orange,
@@ -160,6 +172,7 @@ class _trackOrderPageState extends State<trackOrderPage> {
                         ),
                       ),
                     ),
+
                   ),
                 ],
               ),
@@ -195,7 +208,8 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 width: 40,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("asset/images/amExp.png"),
+                        image: AssetImage("assets/images/$img.png"),
+
                         fit: BoxFit.contain)),
               ),
               Text(
@@ -208,6 +222,17 @@ class _trackOrderPageState extends State<trackOrderPage> {
           )
         ],
       ),
+
     );
   }
 }
+
+
+
+deletedetails(DeliveryDetails details,Function detaildel) async{
+  await Firestore.instance.collection('DeliveryDetails').document(details.name).delete();
+  detaildel(details);
+}
+
+
+
