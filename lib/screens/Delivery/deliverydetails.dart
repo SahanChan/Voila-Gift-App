@@ -31,7 +31,7 @@ class _signUpPageState extends State<signUpPage> {
 
   @override
   Widget build(BuildContext context) {
-   // DeleteNotifier deletenotifier = Provider.of.<DeleteNotifier>(context,listen:false);
+    // DeleteNotifier deletenotifier = Provider.of.<DeleteNotifier>(context,listen:false);
     return Scaffold(
       appBar: VoilaAppBar(title: "Delivery"),
       body: SingleChildScrollView(
@@ -73,8 +73,7 @@ class _signUpPageState extends State<signUpPage> {
                         controller: personname,
                         autovalidate: true,
                         decoration: InputDecoration(
-
-                            labelText:'Name', hintText: "Your name"),
+                            labelText: 'Name', hintText: "Your name"),
                         validator: (value) {
                           if (value.isEmpty) {
                             return "You must have a name";
@@ -127,69 +126,62 @@ class _signUpPageState extends State<signUpPage> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-
                               FlatButton(
+                                  onPressed: () {
+                                    final DeliveryDetails details =
+                                        DeliveryDetails(
+                                            name: personname.text,
+                                            phoneNum: number.text,
+                                            address: address.text,
+                                            anyNotes: notes.text);
+                                    if (_myformKey.currentState.validate()) {
+                                      Firestore.instance
+                                          .collection("DeliveryDetails")
+                                          .add({
+                                        'name': personname.text,
+                                        'number': number.text,
+                                        'address': address.text,
+                                        'notes': notes.text,
+                                      });
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => DateAndTime(
+                                                  xprice: yprice,
+                                                  xdetails: details)));
+                                    } else {
+                                      Scaffold.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text("This is Not Valid"),
+                                      ));
+                                    }
 
-                                onPressed: () {
-
-                                  final DeliveryDetails details =
-                                      DeliveryDetails(
-                                          name: personname.text,
-                                          phoneNum: number.text,
-                                          address: address.text,
-                                          anyNotes: notes.text);
-                                  if (_myformKey.currentState.validate()) {
-                                    Firestore.instance
-                                        .collection("DeliveryDetails")
-                                        .add({
-                                      'name': personname.text,
-                                      'number': number.text,
-                                      'address': address.text,
-                                      'notes': notes.text,
-                                    });
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => DateAndTime(
-                                                xprice: yprice,
-                                                xdetails: details)));
-                                  } else {
-                                    Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text("This is Not Valid"),
-                                    ));
-
-                                  }
-
-                                  /*_ondetailsadded(DeliveryDetails details){
+                                    /*_ondetailsadded(DeliveryDetails details){
                                              DeleteNotifier deletenotifier = Provider.
                                              of.<DeleteNotifier>(context,listen:false);
 
                                               deletenotifier.adddetail(details);
                                               Navigator.pop(context);
                                   }*/
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(20),
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      gradient:
-                                      LinearGradient(colors: [Colors.orange, Colors.red])),
-                                  child: Center(
-                                      child: Text(
+                                  },
+                                  child: Container(
+                                      padding: EdgeInsets.all(20),
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(colors: [
+                                        Colors.orange,
+                                        Colors.red
+                                      ])),
+                                      child: Center(
+                                          child: Text(
                                         "Place Order",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                           fontSize: 20,
-                              ),
-                              )
-                                  )
-                                )
-                              )
-                            ]
-
-
-                      ),
+                                        ),
+                                      ))))
+                            ]),
                       ),
                     ],
                   ),

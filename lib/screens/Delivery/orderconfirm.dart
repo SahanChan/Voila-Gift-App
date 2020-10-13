@@ -53,11 +53,12 @@ class _OrderConfirmState extends State<OrderConfirm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-
                         Text(
                           "      Name:   ${ydetails.name}",
-                          style: TextStyle(color: Colors.orange,
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.orange,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
                         const Divider(
                           color: Colors.black,
@@ -67,8 +68,10 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           endIndent: 0,
                         ),
                         Text("Phone Number:   ${ydetails.phoneNum}",
-                            style: TextStyle(color: Colors.orange,
-                                fontSize: 20, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
                         const Divider(
                           color: Colors.black,
                           height: 20,
@@ -77,68 +80,62 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           endIndent: 0,
                         ),
                         Text("    Address:   ${ydetails.address}",
-                            style: TextStyle(color: Colors.orange,
-                                fontSize: 20, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  trackOrderPage(xdetails: ydetails)));
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(5),
-                        height: 40,
-                        width: 200,
-                        decoration: BoxDecoration(
-                            gradient:
-                            LinearGradient(colors: [Colors.orange, Colors.red])),
-                        child: Center(
-                            child: Text(
-                              "Track Order",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            )
-                        )
-                    )
-
-                  ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    trackOrderPage(xdetails: ydetails)));
+                      },
+                      child: Container(
+                          padding: EdgeInsets.all(5),
+                          height: 40,
+                          width: 200,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [Colors.orange, Colors.red])),
+                          child: Center(
+                              child: Text(
+                            "Track Order",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          )))),
                   FlatButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(10),
-                        height: 50,
-                        width: 250,
-                        decoration: BoxDecoration(
-                            gradient:
-                            LinearGradient(colors: [Colors.red, Colors.orange])),
-                        child: Center(
-                            child: Text(
-                              "Return To Homepage",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            )
-                        )
-                    )
-
-                  ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
+                      },
+                      child: Container(
+                          padding: EdgeInsets.all(10),
+                          height: 50,
+                          width: 250,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [Colors.red, Colors.orange])),
+                          child: Center(
+                              child: Text(
+                            "Return To Homepage",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          )))),
                 ],
               ),
             ],
           ),
         ));
   }
- }
+}

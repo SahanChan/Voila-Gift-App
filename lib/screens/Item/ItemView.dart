@@ -256,9 +256,8 @@ class _ItemManagementState extends State<ItemManagement> {
                 color: ButtonColor,
                 onPressed: () {
                   save();
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => OrderCart()
-                  ));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => OrderCart()));
 
                   Fluttertoast.showToast(
                       msg: "Preferences saved",
@@ -267,8 +266,7 @@ class _ItemManagementState extends State<ItemManagement> {
                       timeInSecForIosWeb: 1,
                       backgroundColor: Colors.yellowAccent,
                       textColor: Colors.black,
-                      fontSize: 16.0
-                  );
+                      fontSize: 16.0);
                 })
           ],
         ),
@@ -285,7 +283,6 @@ class _ItemManagementState extends State<ItemManagement> {
       'Amount': selectedItem2,
       'Description': txt
     });
-
 
     print("saved");
   }

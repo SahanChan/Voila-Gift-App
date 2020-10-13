@@ -156,7 +156,7 @@ class _PaymentState extends State<Payment> {
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         //FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(4)
+                        LengthLimitingTextInputFormatter(3)
                       ],
                       autovalidate: true,
                       decoration: InputDecoration(
@@ -166,8 +166,8 @@ class _PaymentState extends State<Payment> {
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Cant have empty CVC number";
-                        } else if (value.length != 4) {
-                          return "This has to be 4 numbers long";
+                        } else if (value.length != 3) {
+                          return "This has to be 3 numbers long";
                         } else {
                           return null;
                         }
@@ -176,7 +176,7 @@ class _PaymentState extends State<Payment> {
                     TextFormField(
                       controller: expiryDate,
                       decoration: InputDecoration(
-                          labelText: "Expiry Date", hintText: 'DD/MM/YYYY'),
+                          labelText: "Expiry Date", hintText: 'MM/YY'),
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Please enter expiry date";
