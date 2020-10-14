@@ -45,6 +45,12 @@ class _SignInState extends State<SignIn> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              
+                              Image(
+                                image: AssetImage('assets/images/logo.png'),
+                                width: 200,
+                                height: 200,
+                              ),
                               Text(
                                 "Welcome",
                                 style: TextStyle(
