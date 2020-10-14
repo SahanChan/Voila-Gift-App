@@ -4,6 +4,7 @@ import 'package:VoilaGiftApp/screens/Home/bottomNavBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeAppBar.dart';
 import 'package:VoilaGiftApp/screens/Home/homeBody.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
+import 'package:VoilaGiftApp/screens/OrderCart/orderHistory.dart';
 import 'package:VoilaGiftApp/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,16 @@ class Home extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => OrderCart()));
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.history),
+                  title: Text('Order History'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => OrderHistory()));
                   },
                 ),
                 ListTile(

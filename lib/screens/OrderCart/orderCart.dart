@@ -10,6 +10,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:VoilaGiftApp/models/price.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../constants.dart';
+
 class OrderCart extends StatefulWidget {
   @override
   _OrderCartState createState() => _OrderCartState();
@@ -18,7 +20,36 @@ class OrderCart extends StatefulWidget {
 class _OrderCartState extends State<OrderCart> {
   double x;
   String id;
+  final orderName = TextEditingController();
   List<int> _counter = List();
+
+  // AlertDialog alert = AlertDialog(
+  //   title: Text("Save your Order"),
+  //   content: TextField(
+  //     controller: orderName,
+  //     obscureText: false,
+  //     decoration: InputDecoration(
+  //         border: OutlineInputBorder(), labelText: "Order name"),
+  //   ),
+  //   actions: [
+  //     FlatButton(
+  //       onPressed: () {
+  //         Firestore.instance.collection('Order History').add({
+  //           'title': orderName.text,
+  //           'orderedDate': "01/12/2014",
+  //           'items.title1': "Teddy Bear Brown",
+  //           'items.title2': 'Yellow Flower Vase',
+  //         });
+  //         Navigator.of(context).pop();
+  //       },
+  //       child: Text(
+  //         "Save",
+  //         style: TextStyle(color: Colors.black),
+  //       ),
+  //       color: PrimaryColor,
+  //     ),
+  //   ],
+  // );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +107,42 @@ class _OrderCartState extends State<OrderCart> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        print("save icon is pressed");
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("Save your Order"),
+                                content: TextField(
+                                  controller: orderName,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: "Order name"),
+                                ),
+                                actions: [
+                                  FlatButton(
+                                    onPressed: () {
+                                      Firestore.instance
+                                          .collection('Order History')
+                                          .add({
+                                        'title': orderName.text,
+                                        'orderedDate': "01/12/2014",
+                                        'items': {
+                                          'title1': "Teddy Bear Brown",
+                                          'title2': 'Yellow Flower Vase'
+                                        },
+                                      });
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      "Save",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    color: PrimaryColor,
+                                  ),
+                                ],
+                              );
+                            });
                       },
                     ),
                   )

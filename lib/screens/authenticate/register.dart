@@ -45,6 +45,11 @@ class _RegisterState extends State<Register> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              Image(
+                                image: AssetImage('assets/images/logo.png'),
+                                width: 200,
+                                height: 200,
+                              ),
                               Text(
                                 "Register",
                                 style: TextStyle(
@@ -53,7 +58,7 @@ class _RegisterState extends State<Register> {
                                 ),
                               ),
                               Text(
-                                "to voila",
+                                "with voila",
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
