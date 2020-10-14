@@ -165,6 +165,11 @@ class _signUpPageState extends State<signUpPage> {
                                   }*/
                                   },
                                   child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                          gradient: LinearGradient(
+                                              colors: [Colors.orange, Colors.red])
+                                      ),
                                       padding: EdgeInsets.all(20),
                                       height: 60,
                                       child: Center(

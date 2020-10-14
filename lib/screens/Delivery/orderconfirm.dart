@@ -96,6 +96,11 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                     trackOrderPage(xdetails: ydetails)));
                       },
                       child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              gradient: LinearGradient(
+                                  colors: [Colors.orange, Colors.red])
+                          ),
                           padding: EdgeInsets.all(5),
                           height: 40,
                           width: 200,
@@ -114,6 +119,11 @@ class _OrderConfirmState extends State<OrderConfirm> {
                             MaterialPageRoute(builder: (context) => Home()));
                       },
                       child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              gradient: LinearGradient(
+                                  colors: [Colors.orange, Colors.red])
+                          ),
                           padding: EdgeInsets.all(10),
                           height: 50,
                           width: 250,

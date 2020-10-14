@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:VoilaGiftApp/screens/Home/Home.dart';
 import 'package:VoilaGiftApp/screens/OrderCart/orderCart.dart';
-import 'package:VoilaGiftApp/screens/Delivery/deletenotifier.dart';
 import 'package:provider/provider.dart';
 
 
@@ -67,13 +66,7 @@ class _trackOrderPageState extends State<trackOrderPage> {
               GestureDetector(
 
 
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Home()));
-                },
-
                 child: Container(
-
                   padding:
                   EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                   decoration: BoxDecoration(
@@ -128,9 +121,10 @@ class _trackOrderPageState extends State<trackOrderPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                   /* onTap: () => deletedetails(deletenotifier.currentdetail,
-                                      _ondetail),*/
-                    child: Container(
+                   onTap: deleteData,
+
+
+                   child: Container(
 
                       padding:
                       EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -227,12 +221,28 @@ class _trackOrderPageState extends State<trackOrderPage> {
   }
 }
 
+/*Future updatedetails(String name,String address,){
+
+}*/
+/*updatedata() async {
+  CollectionReference collectionReference = Firestore.instance.collection(
+      'DeliveryDetails');
+  QuerySnapshot querySnapshot = await collectionReference.getDocuments();
+  querySnapshot.documents[0].reference.updateData({ 'name': 'dhanuka', 'number': 'dhanuka', 'address': 'dhanuka', 'notes': 'dhanuka'});
+}*/
+
+deleteData() async{
+  CollectionReference collectionReference = Firestore.instance.collection('DeliveryDetails');
+  QuerySnapshot querySnapshot = await collectionReference.getDocuments();
+  querySnapshot.documents[0].reference.delete();
+}
 
 
-deletedetails(DeliveryDetails details,Function detaildel) async{
+
+/*deletedetails(DeliveryDetails details,Function detaildel) async{
   await Firestore.instance.collection('DeliveryDetails').document(details.name).delete();
   detaildel(details);
-}
+}*/
 
 
 
