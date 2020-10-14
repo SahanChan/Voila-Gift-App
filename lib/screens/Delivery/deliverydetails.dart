@@ -167,11 +167,6 @@ class _signUpPageState extends State<signUpPage> {
                                   child: Container(
                                       padding: EdgeInsets.all(20),
                                       height: 60,
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: [
-                                        Colors.orange,
-                                        Colors.red
-                                      ])),
                                       child: Center(
                                           child: Text(
                                         "Place Order",

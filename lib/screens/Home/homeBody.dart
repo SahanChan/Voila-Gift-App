@@ -54,7 +54,9 @@ class _ViolaHomeState extends State<ViolaHome> {
                         height: 150,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
-                          child: Image.network(items[index]['imageUrl']),
+                          child: (items[index]['imageUrl'] == null)
+                              ? Image.asset("assets/images/placeholder.png")
+                              : Image.network(items[index]['imageUrl']),
                         ),
                       ),
                       Container(
@@ -83,8 +85,7 @@ class _ViolaHomeState extends State<ViolaHome> {
                                   timeInSecForIosWeb: 1,
                                   backgroundColor: Colors.yellowAccent,
                                   textColor: Colors.black,
-                                  fontSize: 16.0
-                              );
+                                  fontSize: 16.0);
                               print("added");
                               DocumentReference ref =
                                   await db.collection("OrderItems").add({

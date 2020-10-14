@@ -99,9 +99,6 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           padding: EdgeInsets.all(5),
                           height: 40,
                           width: 200,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.orange, Colors.red])),
                           child: Center(
                               child: Text(
                             "Track Order",
@@ -120,9 +117,6 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           padding: EdgeInsets.all(10),
                           height: 50,
                           width: 250,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.red, Colors.orange])),
                           child: Center(
                               child: Text(
                             "Return To Homepage",

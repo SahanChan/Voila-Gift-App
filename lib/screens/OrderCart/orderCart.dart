@@ -99,7 +99,7 @@ class _OrderCartState extends State<OrderCart> {
                             onDismissed: (direction) {
                               setState(() async {
                                 await Firestore.instance
-                                    .collection('Item')
+                                    .collection('OrderItems')
                                     .document()
                                     .delete();
                               });
@@ -125,8 +125,12 @@ class _OrderCartState extends State<OrderCart> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: SizedBox(
-                                            child: Image.network(
-                                                list[index]['imageUrl']),
+                                            child: (list[index]['imageUrl'] ==
+                                                    null)
+                                                ? Image.asset(
+                                                    "assets/images/placeholder.png")
+                                                : Image.network(
+                                                    list[index]['imageUrl']),
                                             width: 100,
                                             height: 100,
                                           ),
@@ -251,17 +255,17 @@ class _OrderCartState extends State<OrderCart> {
                                                     color: Colors.red,
                                                   ),
                                                   onPressed: () async {
-
-
                                                     Fluttertoast.showToast(
                                                         msg: "Item removed",
-                                                        toastLength: Toast.LENGTH_SHORT,
-                                                        gravity: ToastGravity.BOTTOM,
+                                                        toastLength:
+                                                            Toast.LENGTH_SHORT,
+                                                        gravity:
+                                                            ToastGravity.BOTTOM,
                                                         timeInSecForIosWeb: 1,
-                                                        backgroundColor: Colors.yellowAccent,
+                                                        backgroundColor:
+                                                            Colors.yellowAccent,
                                                         textColor: Colors.black,
-                                                        fontSize: 16.0
-                                                    );
+                                                        fontSize: 16.0);
                                                     DocumentSnapshot ref =
                                                         list[index];
 
